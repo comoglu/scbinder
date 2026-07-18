@@ -49,10 +49,23 @@ grid nucleate, but on a *false* solution, a dense local seismic array
 a lower bar** — a lower bar just makes local arrays easier to
 false-trigger. With reach widened and thresh unchanged, `nw` reproduced
 a solution 17 km from the real network answer (32 picks, 87 deg gap).
-Multiple simultaneous nucleations still occur in that replay (see
-`broome_wide16.log`-style traces) — the sparse tier is a validated
-improvement, not a fully mature tuning; treat `moderate` and further
-sparse-tier refinement as open.
+
+Confirmed live in production the same day: once deployed, `scbinder-nw`
+caught the same Broome event as it replayed through the live pick
+stream, converging to -18.196/120.232 (~10 km from the scanloc/
+scautoloc reference, matched by creation-time cross-check in the DB —
+better than the offline estimate above). The same run also produced two
+other simultaneous nucleations, initially assumed to be false triggers
+from a dense local array; a catalog cross-check instead found both land
+almost exactly on real, recurring GA-cataloged seismic zones (Tennant
+Creek NT swarm, and a historical epicenter near -23.6/133.9 matching
+ga2019mxpehi) — i.e. plausibly genuine local seismicity concurrent in
+the same pick stream, not algorithmic false positives. Treat `moderate`
+and further sparse-tier refinement (e.g. validating against a second,
+independent sparse-region event) as open, but the sparse tier's core
+behavior — nucleate correctly on real events, don't obviously hallucinate
+on noise — held up under a live production check, not just the offline
+replay.
 
 ## Regenerating
 
