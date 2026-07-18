@@ -1,0 +1,42 @@
+scbinder incorporates verbatim source code from Earthworm
+(https://github.com/earthworm-src/earthworm), under the files:
+
+    core/*.c core/*.h        (grid.c, bind.c, hyp.c, l1.c, ingelada.c,
+                               linear.c, sample.c, assess.c and headers —
+                               originally src/seismic_processing/binder_ew/,
+                               algorithm core written by Carl Johnson with
+                               contributions from the Earthworm community)
+    ewlib/*.c ewlib/*.h      (kom.c, tlay.c, site.c, geo_to_km.c, brent.c,
+                               mnbrak.c, chron3.c, time_ew.c and headers —
+                               originally src/libsrc/util/ and include/)
+
+These files retain their original Earthworm copyright and are distributed
+under the following license, which must accompany any copy or substantial
+portion of them:
+
+    MIT License
+
+    Copyright (c) 2022 Seismic Software
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+All other files in this repository (the SeisComP `Client::Application`
+adapter under app/, the regression harness under harness/, build files,
+and documentation) are original work licensed under the MIT license in
+LICENSE, Copyright (c) 2026 Mustafa Comoglu.

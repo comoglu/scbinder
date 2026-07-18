@@ -1,0 +1,25 @@
+# Build output
+/build/
+/compile_commands.json
+.cache/
+
+# Harness: generated artifacts and local dev binaries (rebuilt on demand)
+/harness/out/
+/harness/log/
+/harness/*.qid
+/harness/binder_sc_run.d
+/harness/probe_ew
+/harness/probe_sc
+/harness/pickinject
+/harness/sweep/*.qid
+/harness/sweep/*.run
+/harness/sweep/*.out.xml
+/harness/sweep/*.log
+
+# Test/replay data — never commit waveforms or event dumps
+*.mseed
+*.msd
+
+*.o
+*.so
+picks_for_scbinder.xml

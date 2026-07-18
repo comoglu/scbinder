@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<seiscomp>
+	<module name="scbinder" category="Processing">
+		<description>
+		Phase associator ported from Earthworm's binder_ew (grid-stacking
+		nucleation, L1 relocation). Consumes picks, produces origins.
+		</description>
+		<configuration>
+			<group name="binder">
+				<description>
+				Parameters of the binder_ew algorithm core. The algorithm
+				itself (association grid, velocity model, stacking, location
+				and assessment commands) is configured through a binder_ew.d
+				style command file referenced by "config". An existing
+				Earthworm binder_ew.d works unchanged: transport related
+				commands are recognized and ignored, station lists are taken
+				from the inventory.
+				</description>
+				<parameter name="config" type="file" default="@CONFIGDIR@/binder.d" options="read">
+					<description>
+					binder_ew-style command file with the algorithm
+					configuration: grid (grdlat, grdlon, grdz, dspace),
+					stacking (rstack, tstack, stack, thresh, focus, grid_wt),
+					velocity model (lay, psratio), association (taper, t_dif,
+					rAvg_Factor), location (wt, ph, r_max, zrange, locate_eq)
+					and assessment (assess_pk, maxtrial, residual_cut)
+					commands. Nested files can be included with @filename.
+					An example is installed at
+					@DATADIR@/scbinder/binder_example.d.
+					</description>
+				</parameter>
+				<parameter name="eventIdFile" type="file" default="@ROOTDIR@/var/run/scbinder/quake_id.d" options="write">
+					<description>
+					File storing the next internal quake id between runs
+					(Earthworm's quake_id.d). Created automatically with
+					"next_id 1" if missing. An EventIdFile command in the
+					binder command file takes precedence.
+					</description>
+				</parameter>
+				<parameter name="defaultPickWeight" type="int" default="0" range="0:4">
+					<description>
+					Earthworm pick quality (0 = best, 4 = unusable) assigned
+					to picks that carry no time uncertainty. Weights control
+					both grid stacking (grid_wt) and location weighting (wt).
+					</description>
+				</parameter>
+				<parameter name="weightThresholds" type="list:double" default="0.02, 0.05, 0.5, 1.0" unit="s">
+					<description>
+					Four ascending pick time uncertainty upper bounds mapping
+					to Earthworm pick quality 0, 1, 2 and 3. Picks with larger
+					uncertainty get quality 4.
+					</description>
+				</parameter>
+			</group>
+		</configuration>
+		<command-line>
+			<synopsis>
+			scbinder [options]
+			</synopsis>
+			<group name="Generic">
+				<optionReference>generic#help</optionReference>
+				<optionReference>generic#version</optionReference>
+				<optionReference>generic#config-file</optionReference>
+				<optionReference>generic#plugins</optionReference>
+				<optionReference>generic#daemon</optionReference>
+				<optionReference>generic#auto-shutdown</optionReference>
+				<optionReference>generic#shutdown-master-module</optionReference>
+				<optionReference>generic#shutdown-master-username</optionReference>
+			</group>
+
+			<group name="Verbosity">
+				<optionReference>verbosity#verbosity</optionReference>
+				<optionReference>verbosity#v</optionReference>
+				<optionReference>verbosity#quiet</optionReference>
+				<optionReference>verbosity#component</optionReference>
+				<optionReference>verbosity#syslog</optionReference>
+				<optionReference>verbosity#lockfile</optionReference>
+				<optionReference>verbosity#console</optionReference>
+				<optionReference>verbosity#debug</optionReference>
+				<optionReference>verbosity#log-file</optionReference>
+			</group>
+
+			<group name="Messaging">
+				<optionReference>messaging#user</optionReference>
+				<optionReference>messaging#host</optionReference>
+				<optionReference>messaging#timeout</optionReference>
+				<optionReference>messaging#primary-group</optionReference>
+				<optionReference>messaging#subscribe-group</optionReference>
+				<optionReference>messaging#content-type</optionReference>
+				<optionReference>messaging#start-stop-msg</optionReference>
+			</group>
+
+			<group name="Database">
+				<optionReference>database#db-driver-list</optionReference>
+				<optionReference>database#database</optionReference>
+				<optionReference>database#config-module</optionReference>
+				<optionReference>database#inventory-db</optionReference>
+				<optionReference>database#db-disable</optionReference>
+			</group>
+
+			<group name="Binder">
+				<option flag="" long-flag="binder-config" argument="arg" default="">
+					<description>
+					Override binder.config: the binder_ew-style command file.
+					</description>
+				</option>
+				<option flag="" long-flag="test" argument="" default="">
+					<description>
+					Do not send any object to messaging.
+					</description>
+				</option>
+				<option flag="" long-flag="ep" argument="arg" default="">
+					<description>
+					Event parameters XML file for offline playback: feed all
+					contained picks in time order, log the resulting origins,
+					then exit. Implies --test; messaging is disabled.
+					</description>
+				</option>
+			</group>
+		</command-line>
+	</module>
+</seiscomp>
