@@ -87,6 +87,23 @@ generic 3-layer model, 10 km grid): nucleates and incrementally relocates
 a cluster at -39.17/143.31 vs the GA solution -38.72/143.28 with a 254°
 gap — the machinery works; solution quality tracks model/grid tuning.
 
+## Multi-region / national coverage
+
+scbinder's grid and L1 locator both use a single flat-earth projection
+with one fixed `cos(latitude)` scale for the whole grid, so one instance
+is a **local/regional** associator — accurate to a continent-sized area
+only if that area stays within roughly 10-12 deg of latitude. For wider
+coverage (e.g. all of Australia, ~35 deg of latitude), run **multiple
+scbinder instances as SeisComP aliases**, one per region, each with its
+own `binder.d` grid — not one instance with a huge grid. See
+`national/README.md` for a generator script and a working 9-tile
+Australia+surrounds layout (regression-tested: a real event reproduced
+end to end with a ~10 km residual against the reference network
+solution). True teleseismic distances are out of scope regardless of
+tiling — that's what a spherical global associator (e.g. scautoloc) is
+for; scbinder's phase set (`P S Pn Sn Pg Sg`) and association windows
+are built for regional moveouts, not `PKP`/depth phases beyond ~100 deg.
+
 ## Status / roadmap
 
 - [x] Core + support libs compile verbatim (zero diff vs Earthworm)
