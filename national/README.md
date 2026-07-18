@@ -7,14 +7,52 @@ README.md — a single grid across the whole continent's ~35 deg latitude
 range would visibly distort at its extremes).
 
 ```
- nw  n  ne      Banda Sea/Timor/PNG margin — 0-300 km
-  w  c   e      craton, occasional deeper events — 0-100 km
- sw  s  se      stable craton, shallow only — 0-40 km
+ nw  n  ne      Banda Sea/Timor/PNG margin, 0-300 km — sparse coverage
+  w  c   e      craton, occasional deeper, 0-100 km  — sparse/moderate
+ sw  s  se      stable craton, shallow, 0-40 km       — dense coverage
 ```
 
-See COVERAGE.md for exact tile bounds. All tiles use `velmod iasp91` and
-the association/location parameters tuned and regression-verified in
-harness/ and harness/sweep/.
+See COVERAGE.md for exact tile bounds and per-tile parameters. All tiles
+use `velmod iasp91` and the association/location parameters tuned and
+regression-verified in harness/ and harness/sweep/ — **except** the
+nucleation grid reach (`dspace`/`rstack`/`r_max`), which is tiered by
+expected station density (see below).
+
+## Station-density tiering
+
+Real AU network coverage is far from uniform: dense in the SE corner
+(Vic/NSW/Tas), thinning fast moving north/west/inland. One set of
+nucleation-grid parameters does not work everywhere:
+
+| tier | tiles | dspace | rstack | r_max | basis |
+|---|---|---|---|---|---|
+| dense | sw, s, se | 10 km | 300 km | 400 km | original tuning, regression + playback verified |
+| moderate | e | 15 km | 700 km | 1000 km | interpolated, not yet independently validated |
+| sparse | nw, n, ne, w, c | 20 km | 1200 km | 2000 km | **validated** against a real missed event (below) |
+
+**Why this exists** (found 2026-07-19): tile `nw`'s original dense-tier
+config completely missed a real M6.5 offshore Broome event
+(`ga2026odlbri`, -18.24/120.31, 105 km deep) that scanloc located with
+78 phases. It wasn't a coverage or subscription bug — `nw` was correctly
+receiving the relevant picks. The nucleation stack (`grid_stack, mhit`)
+peaked at 8 against `thresh=16` and never fired, because the *closest*
+usable station was already 2.96 deg (~330 km) away and full azimuthal
+closure needed the Indonesian IA/GE network out to ~15-17 deg
+(1600-1900 km) — all well beyond the dense tier's 300 km `rstack`.
+
+The fix that worked was widening reach (`dspace`/`rstack`/`r_max`)
+**while leaving `thresh` at 16**. The wrong fix — tried first, and worth
+recording as a warning — was lowering `thresh` instead: it did make the
+grid nucleate, but on a *false* solution, a dense local seismic array
+(most likely the Warramunga-style AS*/W* station cluster) stacking up
+30+ picks ~340 km from the truth. **Sparse regions need more reach, not
+a lower bar** — a lower bar just makes local arrays easier to
+false-trigger. With reach widened and thresh unchanged, `nw` reproduced
+a solution 17 km from the real network answer (32 picks, 87 deg gap).
+Multiple simultaneous nucleations still occur in that replay (see
+`broome_wide16.log`-style traces) — the sparse tier is a validated
+improvement, not a fully mature tuning; treat `moderate` and further
+sparse-tier refinement as open.
 
 ## Regenerating
 
@@ -24,7 +62,8 @@ python3 tools/gen_national_grids.py
 
 Writes `binder-<tile>.d` and `scbinder-<tile>.cfg` for all 9 tiles plus
 `COVERAGE.md`. Edit the constants at the top of the script (bounding
-box, tile/overlap size, per-row depth ranges), not the generated files.
+box, tile/overlap size, per-row depth ranges, `DENSITY`/`TILE_DENSITY`),
+not the generated files.
 
 ## Deploying a tile
 
@@ -55,13 +94,13 @@ matching `national/` subdirectory there.
 
 Verified (2026-07-19): tile `s` initializes with its site table
 correctly restricted to its own grid (1949/12683 inventory channels);
-tile `n` (the largest grid, 300 km depth, 176x133x30 cells) initializes
-cleanly in ~2s; tile `se` reproduces a real event via `--ep` end to end
-(67-phase solution, ~10 km from the reference network solution).
+tile `n` (the largest grid, 300 km depth, sparse-tier reach) initializes
+cleanly in a few seconds; tile `se` reproduces a real event via `--ep`
+end to end (67-phase solution, ~10 km from the reference network
+solution); tile `nw`, after the density-tier fix, reproduces the real
+Broome event ~17 km from the reference network solution (see above).
 
 ## Enabling
-
-Created aliases are **not** started by default. To bring a tile online:
 
 ```
 seiscomp enable scbinder-<tile>
