@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 #
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (C) 2026 Mustafa Çomoğlu
+#
 # Run the Earthworm side of the scbinder regression harness:
 #   startstop (rings + binder_ew) -> sniffring capture -> pickinject ->
 #   settle -> pau -> results in out/

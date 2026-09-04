@@ -1,5 +1,8 @@
 /* pickinject.c — inject TYPE_PICK_SCNL text messages into an EW ring.
  *
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 Mustafa Çomoğlu
+ *
  * Usage: pickinject <RING_NAME> <pickfile>
  *   Each line of pickfile is one TYPE_PICK_SCNL message
  *   (e.g. produced by sc2ewpick.py). Lines are sent in order with a

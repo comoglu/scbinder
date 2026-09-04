@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (C) 2026 Mustafa Çomoğlu
 """Generate a set of regional binder.d files covering Australia and its
 seismically-relevant surroundings (Banda Sea/Timor, Coral Sea/PNG margin,
 Tasman Sea, Southern Ocean margin), plus the scbinder alias config that

@@ -1,4 +1,7 @@
-/* Probe tlay values after processing lay/psratio commands from a file. */
+/* Probe tlay values after processing lay/psratio commands from a file.
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 Mustafa Çomoğlu
+ */
 #include <stdio.h>
 #include <kom.h>
 #include <tlay.h>

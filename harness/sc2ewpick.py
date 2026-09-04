@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (C) 2026 Mustafa Çomoğlu
 """SCML picks -> Earthworm TYPE_PICK_SCNL messages + EW site file.
 
 Usage: sc2ewpick.py <event.xml> <sites_out.d> <picks_out.txt>

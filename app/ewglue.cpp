@@ -1,6 +1,9 @@
 /***************************************************************************
  * scbinder — SeisComP port of Earthworm's binder_ew associator
  *
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 Mustafa Çomoğlu
+ *
  * Replacements for the Earthworm runtime services the binder core links
  * against: logit() logging, GetInst() installation-id lookup, the
  * EventIdFile global and the bndr_quake2k()/bndr_link() output callbacks

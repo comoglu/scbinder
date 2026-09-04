@@ -1,6 +1,9 @@
 /***************************************************************************
  * scbinder — SeisComP port of Earthworm's binder_ew associator
  *
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 Mustafa Çomoğlu
+ *
  * BinderApp: Client::Application wrapper around the verbatim binder_ew
  * core. Subscribes to PICK, feeds picks into bind_pick(), emits the
  * resulting quakes as DataModel::Origin to LOCATION.
@@ -33,6 +36,7 @@ class BinderApp : public Client::Application {
 		void onLink(long quake, long pick);
 
 	protected:
+		const char *version() override;
 		void createCommandLineDescription() override;
 		bool validateParameters() override;
 		bool init() override;

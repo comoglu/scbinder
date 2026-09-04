@@ -1,42 +1,52 @@
-scbinder incorporates verbatim source code from Earthworm
-(https://github.com/earthworm-src/earthworm), under the files:
+scbinder
+========
 
-    core/*.c core/*.h        (grid.c, bind.c, hyp.c, l1.c, ingelada.c,
-                               linear.c, sample.c, assess.c and headers —
-                               originally src/seismic_processing/binder_ew/,
-                               algorithm core written by Carl Johnson with
-                               contributions from the Earthworm community)
-    ewlib/*.c ewlib/*.h      (kom.c, tlay.c, site.c, geo_to_km.c, brent.c,
-                               mnbrak.c, chron3.c, time_ew.c and headers —
-                               originally src/libsrc/util/ and include/)
+scbinder is a port of Earthworm's phase associator binder_ew to SeisComP.
+It is made of two parts with different licenses.
 
-These files retain their original Earthworm copyright and are distributed
-under the following license, which must accompany any copy or substantial
-portion of them:
 
-    MIT License
+1. Earthworm core — MIT
+-----------------------
 
-    Copyright (c) 2022 Seismic Software
+The following files are carried over verbatim from Earthworm
+(https://gitlab.com/seismic-software/earthworm) and remain under
+Earthworm's own MIT license (Copyright (c) 2022 Seismic Software):
 
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
+    core/*.c core/*.h        grid.c, bind.c, hyp.c, l1.c, ingelada.c,
+                             linear.c, sample.c, assess.c and headers —
+                             originally src/seismic_processing/binder_ew/,
+                             the association/nucleation/location algorithm
+                             written by Carl Johnson with contributions
+                             from the Earthworm community (L. Dietz,
+                             P. Friberg and others; see the revision
+                             histories preserved in the sources).
 
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
+    ewlib/*.c ewlib/*.h      kom.c, tlay.c, site.c, geo_to_km.c, brent.c,
+                             mnbrak.c, chron3.c, time_ew.c and headers —
+                             originally src/libsrc/util/ and include/.
 
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
+The full MIT license text that must accompany these files is in
+LICENSE.earthworm.
 
-All other files in this repository (the SeisComP `Client::Application`
-adapter under app/, the regression harness under harness/, build files,
-and documentation) are original work licensed under the MIT license in
-LICENSE, Copyright (c) 2026 Mustafa Comoglu.
+
+2. SeisComP port — GNU AGPL-3.0-or-later
+----------------------------------------
+
+All other files (the SeisComP Client::Application adapter under app/, the
+regression harness under harness/, the national-grid generator under
+tools/, build files, configuration and documentation) are original work:
+
+    Copyright (C) 2026 Mustafa Çomoğlu
+
+They are licensed under the GNU Affero General Public License, version 3
+or (at your option) any later version. The full text is in LICENSE.
+
+This part is AGPL because scbinder links the SeisComP libraries
+(libseiscomp_client, libseiscomp_core), which are themselves AGPL-3.0; a
+work linking them must be distributed under AGPL/GPL-compatible terms.
+
+When redistributing or running a modified scbinder, keep this NOTICE and
+the "scbinder — SeisComP port by Mustafa Çomoğlu" attribution intact
+(AGPL-3.0 section 7(b): preservation of author attributions).
+
+For academic citation of the port, see CITATION.cff.

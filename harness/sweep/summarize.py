@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (C) 2026 Mustafa Çomoğlu
 """Summarize sweep outputs: final state of the largest quake per variant."""
 import math
 import sys

@@ -1,6 +1,9 @@
 /***************************************************************************
  * scbinder — SeisComP port of Earthworm's binder_ew associator
  *
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 Mustafa Çomoğlu
+ *
  * The application layer replaces binder_ew.c: SeisComP messaging replaces
  * the transport rings, Inventory replaces the site file, DataModel::Origin
  * replaces TYPE_QUAKE2K/TYPE_LINK. The algorithm core (grid.c, bind.c,
@@ -76,6 +79,13 @@ const char *ewLoc(const std::string &loc) {
 	return loc.empty() ? "--" : loc.c_str();
 }
 
+}
+
+
+const char *BinderApp::version() {
+	return "scbinder 1.0 (binder_ew 1.0.43 core) - "
+	       "SeisComP port by Mustafa Comoglu, AGPL-3.0-or-later; "
+	       "binder_ew core (c) Seismic Software, MIT";
 }
 
 

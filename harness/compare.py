@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (C) 2026 Mustafa Çomoğlu
 """Compare binder_ew ring output with scbinder --ep-output.
 
 Usage: compare.py <ring_capture.log> <scbinder_out.xml> <event.xml>

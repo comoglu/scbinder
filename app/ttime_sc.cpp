@@ -1,6 +1,9 @@
 /***************************************************************************
  * scbinder — SeisComP port of Earthworm's binder_ew associator
  *
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 Mustafa Çomoğlu
+ *
  * Travel-time dispatcher. The binder core computes travel times through
  * tlay's narrow interface (t_com, t_lay, t_phase, t_region, getPoverS).
  * The verbatim tlay.c is compiled with those five symbols renamed to

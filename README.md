@@ -138,10 +138,25 @@ are built for regional moveouts, not `PKP`/depth phases beyond ~100 deg.
 - [ ] binder_max `grid_joint()` (MAXEL, Sheen et al. 2016) as alternate
       nucleation backend (`binder_max/` sources, same adapter)
 
+## License
+
+scbinder is two parts under two licenses (see `NOTICE` for the file list):
+
+| Part | License |
+|---|---|
+| `core/`, `ewlib/` — verbatim Earthworm binder_ew | **MIT**, Copyright (c) 2022 Seismic Software (`LICENSE.earthworm`) |
+| `app/`, `harness/`, `tools/`, build + config + docs — the SeisComP port | **GNU AGPL-3.0-or-later**, Copyright (C) 2026 Mustafa Çomoğlu (`LICENSE`) |
+
+The port is AGPL because it links the SeisComP libraries, which are
+AGPL-3.0 — a linking work has to be distributed under AGPL/GPL-compatible
+terms. MIT folds into that cleanly; the Earthworm files keep their own
+notice. Keep the `NOTICE` file and the "SeisComP port by Mustafa Çomoğlu"
+attribution when redistributing (AGPL §7(b)).
+
 ## Attribution
 
 binder_ew was written by Carl Johnson with decades of contributions from
 the Earthworm community (L. Dietz, P. Friberg and others); see the
-revision histories preserved in the sources. Earthworm is distributed
-under the MIT license (Copyright (c) 2022 Seismic Software).
-SeisComP port: Mustafa Comoglu.
+revision histories preserved in the sources.
+SeisComP port: Mustafa Çomoğlu (Geoscience Australia). For academic
+citation, see `CITATION.cff`.

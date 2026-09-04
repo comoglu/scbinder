@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "scbinder — Earthworm's binder_ew associator as a SeisComP module"
+message: "If you use scbinder in work that leads to a publication, please cite it."
+type: software
+authors:
+  - given-names: Mustafa
+    family-names: Çomoğlu
+    affiliation: Geoscience Australia
+    email: comoglu@gmail.com
+abstract: >-
+  scbinder is a port of Earthworm's phase associator binder_ew (Carl
+  Johnson's grid-stacking nucleation plus L1-norm relocation) to SeisComP.
+  The Earthworm algorithm core is bundled verbatim under its MIT license;
+  the SeisComP Client::Application adapter, offline playback mode,
+  travel-time backend dispatch and regression harness are original work
+  under AGPL-3.0-or-later.
+license: AGPL-3.0-or-later
+repository-code: ""
+references:
+  - type: software
+    title: "Earthworm binder_ew"
+    notes: >-
+      Original associator, version 1.0.43 (2024-11-02), bundled verbatim
+      in core/ and ewlib/. MIT license, Copyright (c) 2022 Seismic
+      Software; algorithm by Carl Johnson and the Earthworm community.
+    authors:
+      - name: "Carl Johnson and the Earthworm community"

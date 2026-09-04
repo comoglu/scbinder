@@ -1,6 +1,9 @@
 /***************************************************************************
  * scbinder — SeisComP port of Earthworm's binder_ew associator
  *
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 Mustafa Çomoğlu
+ *
  * Declarations of the entry points of the verbatim binder_ew core
  * (grid.c / bind.c / hyp.c / assess.c) that are not declared in the
  * headers shipped with the core.  Mirrors the prototypes used by the
