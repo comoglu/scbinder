@@ -41,7 +41,7 @@ velmod iasp91
 # Association grid: 18.5-22.5N, 160.6-154.5W covers the whole main
 # Hawaiian chain (Hawaii I., Maui Nui, Oahu, Kauai) and Loihi to the SE.
 # 4 deg of latitude, well inside the ~10-12 deg single-instance limit
-# (BINDER_NOTES.md) — no tiling. Depth to 60 km catches the Big Island
+# (top-level README.md) — no tiling. Depth to 60 km catches the Big Island
 # mantle fault zones and the Pahala deep swarm (~30-45 km).
 dspace   10.0
 grdlat   18.5  22.5

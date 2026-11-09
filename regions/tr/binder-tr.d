@@ -30,7 +30,7 @@ velmod iasp91
 # Association grid: 34-43N covers mainland Turkey, Aegean Sea, Cyprus
 # and the Iran/Caucasus border; 24-46E from the Aegean to the eastern
 # border. 9 deg of latitude, well inside the ~10-12 deg single-instance
-# accuracy limit (see BINDER_NOTES.md) - no tiling needed.
+# accuracy limit (see top-level README.md) - no tiling needed.
 dspace   15.0
 grdlat   34.0  43.0
 grdlon   24.0  46.0

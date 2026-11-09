@@ -2,7 +2,7 @@
 
 Nine scbinder instances tiling Australia and its seismically-relevant
 surroundings in a 3x3 compass-rose layout, so the flat-earth projection
-grid.c/hyp.c use stays accurate everywhere (see BINDER_NOTES.md /
+grid.c/hyp.c use stays accurate everywhere (see the top-level
 README.md — a single grid across the whole continent's ~35 deg latitude
 range would visibly distort at its extremes).
 

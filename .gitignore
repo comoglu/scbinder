@@ -23,3 +23,6 @@
 *.o
 *.so
 picks_for_scbinder.xml
+
+# Private working notes (kept locally, not published)
+BINDER_NOTES.md

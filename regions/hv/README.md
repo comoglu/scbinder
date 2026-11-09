@@ -3,7 +3,7 @@
 Single scbinder instance covering the main Hawaiian chain for testing
 against Hawaiian Volcano Observatory (`HV`) data. One instance is enough:
 the grid spans 4 deg of latitude (18.5-22.5N), well inside the ~10-12 deg
-limit for a single flat-earth projection (BINDER_NOTES.md), unlike
+limit for a single flat-earth projection (top-level README.md), unlike
 Australia's `national/` setup which needed 9 tiles for its ~35 deg span.
 
 **Status: untuned.** The algorithm section of `binder-hv.d` is copied

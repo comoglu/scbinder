@@ -4,7 +4,7 @@ Single scbinder instance covering Turkey and its seismically-relevant
 margins (Aegean, Cyprus, Caucasus/Iran border) for testing against
 Kandilli Observatory (KOERI, network code `KO`) data. One instance is
 enough here — the grid spans 9 deg of latitude (34-43N), inside the
-~10-12 deg limit noted in BINDER_NOTES.md/README.md for a single
+~10-12 deg limit noted in the top-level README.md for a single
 flat-earth projection, unlike Australia's `national/` setup which needed
 9 tiles for its ~35 deg span.
 
