@@ -14,7 +14,7 @@ set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 PICKFILE="$(readlink -f "${1:?usage: run_binder_ew.sh <picks_ew.txt>}")"
 
-export EW_HOME=/home/ubuntu/earthworm_git
+export EW_HOME="${EW_HOME:-$HOME/earthworm_git}"   # Earthworm checkout; override via env
 export EW_VERSION=.
 export EW_PARAMS="$HERE/params/"
 export EW_LOG="$HERE/log/"

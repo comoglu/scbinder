@@ -3,11 +3,12 @@
 # Copyright (C) 2026 Mustafa Çomoğlu
 """Summarize sweep outputs: final state of the largest quake per variant."""
 import math
+import os
 import sys
 import xml.etree.ElementTree as ET
 
 REF_LAT, REF_LON = -37.4144, 146.2608   # scanloc, 179 phases
-BASE = '/home/ubuntu/Projects/scbinder/harness/sweep'
+BASE = os.path.dirname(os.path.abspath(__file__))
 
 
 def ln(t):
